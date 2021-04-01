@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style type="text/css">
+{% for book in books_list %}
+    #col{{loop.index}}
+    {
+     width: 220px; /* Ширина колонок */
+    padding: 5px; /* Поля вокруг текста */
+    margin-left: 10px; /* Отступ слева */
+    margin-top: 20px; /* Отступ сверху */
+    float: left; /* Состыковка колонок по горизонтали */
+    border: 1px solid black; /* Рамка вокруг слоя */
+    font-family: Verdana, Arial, sans-serif; /* Рубленый шрифт */
+    font-weight: bold; /* Жирное начертание текста заголовка */
+    font-size: 80%; /* Размер шрифта */
+    color: white; /* Цвет текста заголовка */
+   }
+   #col{{loop.index}}
+   {
+    font-family: "TEMPUS SANS ITC", Times, serif; /* Шрифт с засечками */
+    font-size: 150%; /* Размер шрифта */
+    font-weight: bold; /* Нормальное начертание */
+    color: black; /* Цвет текста */
+    text-align: center;
+   }
+   #col{{loop.index}} { background: #EBE0C5; }
+ {% endfor %}
+
+   .container {
+     clear: both;  /* Отменяет действие float */
+   }
+</style>
+<div class="container">
+    {% for book in books_list %}
+    <div id="col{{loop.index}}">
+        {{book['title']}}<br/>
+		<img src="static/img/{{book['cover_art']}}"><br/>
+        {{book['author']}}<br/>
+        {{book['price']}}<br/>
+        <a class="btn btn-success " href="/jobs">Купить</a>
+	</div>
+    {% endfor %}
+  </div>
+{% endblock %}
